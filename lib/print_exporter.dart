@@ -8,6 +8,7 @@ import 'package:path/path.dart' as p;
 import 'package:pdf/pdf.dart';
 
 import 'course_qr.dart';
+import 'app_info.dart';
 import 'qr_exporter.dart';
 
 import 'models/print_layout.dart';
@@ -332,7 +333,14 @@ class PdfExporter {
     final folder = await Directory(p.join(parent, QrExporter.folderName))
         .create(recursive: true);
     final document = PdfDocument();
-    PdfInfo(document, title: 'OrientMark QR', author: 'OrientMark');
+    PdfInfo(
+      document,
+      title: appName,
+      author: [
+        appDeveloper,
+        appOrganization,
+      ].where((value) => value.isNotEmpty).join(' · '),
+    );
     final format = PdfPageFormat(
       layout.pageWidth * PdfPageFormat.mm,
       layout.pageHeight * PdfPageFormat.mm,

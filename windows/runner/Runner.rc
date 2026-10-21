@@ -1,6 +1,7 @@
 #pragma code_page(65001)
 #include "resource.h"
 #include "winres.h"
+#include "app_identity.h"
 
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 IDI_APP_ICON ICON "resources\\app_icon.ico"
@@ -30,12 +31,12 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "OrientMark\0"
-            VALUE "Author", "Vyacheslav Shirnin\0"
+            VALUE "CompanyName", APP_ORGANIZATION "\0"
+            VALUE "Author", APP_DEVELOPER "\0"
             VALUE "FileDescription", "OrientMark QR\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "orientmark_qr\0"
-            VALUE "LegalCopyright", "Copyright (c) 2026 Vyacheslav Shirnin, OrientMark. MIT License.\0"
+            VALUE "LegalCopyright", APP_COPYRIGHT "\0"
             VALUE "OriginalFilename", "orientmark_qr.exe\0"
             VALUE "ProductName", "OrientMark QR\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

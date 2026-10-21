@@ -20,6 +20,21 @@ add_executable(${BINARY_NAME} WIN32
 # that need different build settings.
 apply_standard_settings(${BINARY_NAME})
 
+# Only public publisher metadata is passed from the release script.
+set(APP_DEVELOPER "$ENV{ORIENTMARK_APP_DEVELOPER}")
+set(APP_ORGANIZATION "$ENV{ORIENTMARK_APP_ORGANIZATION}")
+set(APP_COPYRIGHT "MIT License.")
+if(NOT APP_DEVELOPER STREQUAL "" OR NOT APP_ORGANIZATION STREQUAL "")
+  string(TIMESTAMP APP_COPYRIGHT_YEAR "%Y")
+  set(APP_COPYRIGHT "Copyright (c) ${APP_COPYRIGHT_YEAR} ${APP_DEVELOPER}, ${APP_ORGANIZATION}. MIT License.")
+endif()
+foreach(FIELD APP_DEVELOPER APP_ORGANIZATION APP_COPYRIGHT)
+  string(REPLACE "\\" "\\\\" ${FIELD}_RC "${${FIELD}}")
+  string(REPLACE "\"" "\\\"" ${FIELD}_RC "${${FIELD}_RC}")
+endforeach()
+configure_file("app_identity.h.in" "${CMAKE_CURRENT_BINARY_DIR}/app_identity.h" @ONLY)
+target_include_directories(${BINARY_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
+
 # Add preprocessor definitions for the build version.
 target_compile_definitions(${BINARY_NAME} PRIVATE "FLUTTER_VERSION=\"${FLUTTER_VERSION}\"")
 target_compile_definitions(${BINARY_NAME} PRIVATE "FLUTTER_VERSION_MAJOR=${FLUTTER_VERSION_MAJOR}")

@@ -900,10 +900,14 @@ class _GeneratorPageState extends State<GeneratorPage> {
         icon: Icon(Icons.open_in_new, size: 16),
         label: Text(s.text('versionLink', {'version': appVersion})),
       ),
-      Text(
-        '$appDeveloper · $appOrganization',
-        style: TextStyle(color: muted, fontSize: 11),
-      ),
+      if (appDeveloper.isNotEmpty || appOrganization.isNotEmpty)
+        Text(
+          [
+            appDeveloper,
+            appOrganization,
+          ].where((value) => value.isNotEmpty).join(' · '),
+          style: TextStyle(color: muted, fontSize: 11),
+        ),
       TextButton.icon(
         onPressed: openRepository,
         icon: GitHubIcon(),
