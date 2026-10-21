@@ -1,5 +1,9 @@
 # OrientMark QR
 
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/orient-mark/qr-generator/total)
+
+[English](README.md) | Русский
+
 Генератор QR-кодов для приложений OrientMark: контрольные пункты 31–99, старт, финиш и очистка.
 Работает на Windows 10/11 x64 без интернета.
 
