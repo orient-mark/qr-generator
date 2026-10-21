@@ -1,0 +1,27 @@
+name: orientmark_qr
+description: Windows-приложение для создания QR-кодов OrientMark.
+publish_to: none
+repository: https://github.com/orient-mark/qr-generator
+version: 1.0.0+1
+environment:
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  url_launcher: ^6.3.2
+  file_selector: ^1.1.0
+  path: ^1.9.1
+  qr: ^3.0.2
+  pdf: ^3.13.1
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  zxing2: ^0.2.4
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/l10n/
